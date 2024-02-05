@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 find_package(FLTK REQUIRED)
 
-include_directories(${FLTK_INCLUDE_DIRS})
+include_directories(${FLTK_INCLUDE_DIR})
 
 add_executable(alcode main.cpp)
-target_link_libraries(alcode fltk)
+target_link_libraries(alcode ${FLTK_LIBRARIES})
