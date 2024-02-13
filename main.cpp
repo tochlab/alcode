@@ -8,6 +8,18 @@
 #include <FL/Fl_Menu_Bar.H>
 #include <FL/Fl_Tile.H>
 
+class FixedHeightMenuBar : public Fl_Menu_Bar {
+
+public:
+    FixedHeightMenuBar(int X, int Y, int W, int H, const char *l = nullptr) : Fl_Menu_Bar(X, Y, W, H, l) {
+    }
+
+    void resize(int x, int y, int w, int) override {
+        Fl_Widget::resize(x, y, w, this->h());
+    }
+
+};
+
 class MainWindow : public Fl_Window {
 private:
     static void quit_callback(Fl_Widget *, void *data) {
@@ -20,7 +32,7 @@ public:
     MainWindow(int x, int y, int w, int h, const char *title) : Fl_Window(x,y,w,h, title) {
         this->begin();
 
-        auto menu_bar = new Fl_Menu_Bar(0,0, this->w(), 25);
+        auto menu_bar = new FixedHeightMenuBar(0, 0, this->w(), 25);
         menu_bar->add("File/Quit", FL_COMMAND + 'q', quit_callback, this);
 
         auto file_tree = new Fl_Tree(0, menu_bar->h(), 200, this->h());
