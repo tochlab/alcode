@@ -10,12 +10,13 @@
 
 class FixedHeightMenuBar : public Fl_Menu_Bar {
 
-public:
-    FixedHeightMenuBar(int X, int Y, int W, int H, const char *l = nullptr) : Fl_Menu_Bar(X, Y, W, H, l) {
-    }
-
+private:
     void resize(int x, int y, int w, int) override {
         Fl_Widget::resize(x, y, w, this->h());
+    }
+
+public:
+    FixedHeightMenuBar(int X, int Y, int W, int H, const char *l = nullptr) : Fl_Menu_Bar(X, Y, W, H, l) {
     }
 
 };
